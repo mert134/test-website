@@ -1,0 +1,9 @@
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Node dependencies and logs
+node_modules/
+**/node_modules/
+npm-debug.log*
