@@ -44,9 +44,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#08080a">
-  <meta name="description" content="Zanity support tickets and report center.">
+  <meta name="description" content="Send a support report to the Zanity team.">
   <meta property="og:title" content="Zanity — Support Center">
-  <meta property="og:description" content="Submit a report and follow its replies securely.">
+  <meta property="og:description" content="Send a support report to the Zanity team.">
   <meta property="og:image" content="https://reports.zanity.net/zanity-logo.png">
   <title>Zanity — Support Center</title>
   <style>
@@ -277,10 +277,6 @@
       <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
       <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
         <a class="nav-link primary" id="nav-report" href="#report">Report an issue</a>
-        <a class="nav-link" id="nav-logs" href="/logs" hidden>My tickets</a>
-        <a class="nav-link" id="nav-admin" href="/admin" hidden>Owner panel</a>
-        <span class="account-name" id="account-name" hidden></span>
-        <button class="nav-button" id="sign-out" type="button" hidden>Sign out</button>
         <a class="nav-link external" href="https://offical.zanity.net/" target="_blank" rel="noopener">Main site ↗</a>
       </nav>
     </div>
@@ -291,30 +287,21 @@
       <div class="shell hero-content">
         <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Zanity community support</div>
         <h1>Need help?<br><span>Let’s sort it out.</span></h1>
-        <p class="hero-copy">Describe the issue, choose the affected project, and follow the response from your private ticket page. <strong>Reports go straight to Zanity support.</strong></p>
+        <p class="hero-copy">Describe the issue and choose the affected project. <strong>Your report goes to the private Zanity support channel on Discord.</strong></p>
         <div class="hero-actions">
           <a class="button primary" id="hero-action" href="#report">Create a support report <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
 
-    <section class="shell panel auth-gate" id="auth-gate" hidden>
-      <span class="section-kicker">Secure ticket access</span>
-      <h2>Sign in with Discord</h2>
-      <p id="auth-copy">Connect your Discord account to submit a report, receive replies, and see your ticket history.</p>
-      <a class="button primary" id="discord-login" href="https://zanity-reports-api.onrender.com/api/auth/discord/start">Continue with Discord <span class="arrow" aria-hidden="true">→</span></a>
-      <p class="error-note" id="auth-error" hidden></p>
-    </section>
-
-    <section class="section" id="report-section" hidden>
+    <section class="section" id="report">
       <div class="shell">
         <div class="section-head">
           <div>
             <span class="section-kicker">Support request</span>
             <h2>Send a report</h2>
-            <p class="section-copy">Tell us what happened and include steps to reproduce it when possible. You can track replies and past tickets from My tickets.</p>
+            <p class="section-copy">Tell us what happened and include steps to reproduce it when possible. We will forward your report to the private support channel.</p>
           </div>
-          <a class="button secondary" href="/logs">My tickets</a>
         </div>
 
         <div class="report-layout">
@@ -373,7 +360,7 @@
                 <div class="field full">
                   <div class="consent">
                     <input id="privacy-consent" name="privacyConsent" type="checkbox" required>
-                    <label for="privacy-consent">I understand that my Discord account ID and the IP address used for this request are stored for ticket security and moderation. IP addresses are visible only to the owner and are automatically removed after the configured retention period.</label>
+                    <label for="privacy-consent">I understand that my report and the IP address observed for this request will be sent to a private Zanity support channel on Discord. Everyone with access to that channel can see them, and Discord may retain the message until an owner deletes it.</label>
                   </div>
                 </div>
                 <div class="field full">
@@ -390,7 +377,7 @@
               </div>
 
               <div class="form-bottom">
-                <p class="form-note">Only one unresolved ticket is allowed per Discord account. You can open another after reading the owner’s reply.</p>
+                <p class="form-note">This simple form does not create an online ticket or show replies/history. Add contact information above if you want the team to follow up.</p>
                 <button class="button primary submit" id="submit-button" type="submit"><span id="button-label">Submit report</span><span class="arrow" aria-hidden="true">→</span></button>
               </div>
               <div class="status" id="form-status" role="status" aria-live="polite" hidden></div>
@@ -413,7 +400,7 @@
               <h4>Keep private data private</h4>
               <p>Do not submit passwords, access keys, webhook URLs, or payment details.</p>
               <div class="divider"></div>
-              <p>Your ticket link is private. Do not share it with anyone else.</p>
+              <p>Keep the reference code shown after submission if you need to ask about your report.</p>
             </section>
           </aside>
         </div>
@@ -421,75 +408,10 @@
     </section>
   </main>
 
-  <main class="page-view" id="ticket-view" hidden>
-    <div class="shell">
-      <div class="page-view-head">
-        <span class="section-kicker">Private support ticket</span>
-        <h1 id="ticket-title">Your support ticket</h1>
-        <p id="ticket-reference"></p>
-        <span class="status-pill" id="ticket-status">Awaiting reply</span>
-      </div>
-      <div class="ticket-grid">
-        <section class="panel ticket-card">
-          <h3>Your report</h3>
-          <dl id="ticket-details"></dl>
-        </section>
-        <section class="panel conversation-card">
-          <h3>Conversation</h3>
-          <div class="waiting-box" id="waiting-box">Awaiting reply… This page will update when the owner responds.</div>
-          <div id="owner-messages"></div>
-          <div class="ticket-actions">
-            <button class="button primary" id="continue-button" type="button" hidden>Continue to report center <span class="arrow">→</span></button>
-            <a class="button secondary" href="/logs">View ticket history</a>
-          </div>
-        </section>
-      </div>
-      <p class="error-note" id="ticket-error" hidden></p>
-    </div>
-  </main>
-
-  <main class="page-view" id="logs-view" hidden>
-    <div class="shell">
-      <div class="page-view-head">
-        <span class="section-kicker">Your history</span>
-        <h1>My tickets</h1>
-        <p>See your previous reports, their status, and owner replies.</p>
-      </div>
-      <div class="log-list" id="log-list"></div>
-      <p class="error-note" id="logs-error" hidden></p>
-      <div class="ticket-actions"><a class="button primary" href="/">Back to report center</a></div>
-    </div>
-  </main>
 
     <div class="container">
         <h1>SİTE HAZIR!!</h1>
-  <main class="page-view" id="admin-view" hidden>
-    <div class="shell">
-      <div class="page-view-head">
-        <span class="section-kicker">Private owner tools</span>
-        <h1>Support inbox</h1>
-        <p>Review reports, reply to users, and manage temporary or permanent restrictions.</p>
-      </div>
-      <div class="admin-layout">
-        <section class="panel admin-card">
-          <div class="section-head">
-            <h3>Tickets</h3>
-            <button class="button secondary small-button" id="refresh-admin" type="button">Refresh</button>
-          </div>
-          <div class="admin-ticket-list" id="admin-ticket-list"></div>
-        </section>
-        <section class="panel admin-card admin-detail" id="admin-detail">
-          <div class="empty-state">Choose a ticket to read it and reply.</div>
-        </section>
-      </div>
-      <section class="panel admin-card" style="margin-top:18px">
-        <h3>Active bans</h3>
-        <p class="section-copy">Bans can target the verified Discord account and, when selected, the IP observed for that ticket.</p>
-        <div class="ban-list" id="ban-list" style="margin-top:18px"></div>
-      </section>
-      <p class="error-note" id="admin-error" hidden></p>
-    </div>
-  </main>
+
 
   <footer id="site-footer">
     <div class="shell footer-inner">
@@ -503,423 +425,29 @@
 
   <script>
     const API_BASE = "https://zanity-reports-api.onrender.com";
-    const OWNER_NAME = "my_ci";
-    const OWNER_AVATAR = "https://reports.zanity.net/owner-profili.png";
-    const SESSION_KEY = "zanity-ticket-session";
     const $ = (selector) => document.querySelector(selector);
-    const views = ["home-view", "ticket-view", "logs-view", "admin-view"];
-    let token = localStorage.getItem(SESSION_KEY) || "";
-    let currentUser = null;
-    let currentTicketId = "";
-    let pollTimer = null;
+    const form = $("#report-form");
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    $("#year").textContent = new Date().getFullYear();
+
+    function setStatus(message, type = "info") {
+      const status = $("#form-status");
+      status.textContent = message || "";
+      status.className = `status ${type}`;
+      status.hidden = !message;
+    }
 
     async function api(path, options = {}) {
       const headers = { ...(options.headers || {}) };
-      if (token) headers.Authorization = `Bearer ${token}`;
       if (options.body && !headers["Content-Type"]) headers["Content-Type"] = "application/json";
       const response = await fetch(`${API_BASE}${path}`, { ...options, headers, cache: "no-store" });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        const error = new Error(data.error || "The request could not be completed.");
+        const error = new Error(data.error || "The report could not be sent.");
         error.status = response.status;
-        error.data = data;
         throw error;
       }
       return data;
-    }
-
-    function showView(id) {
-      for (const viewId of views) document.getElementById(viewId).hidden = viewId !== id;
-      if (id !== "ticket-view" && pollTimer) {
-        clearInterval(pollTimer);
-        pollTimer = null;
-      }
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }
-
-    function setMessage(id, message) {
-      const node = document.getElementById(id);
-      node.textContent = message || "";
-      node.hidden = !message;
-    }
-
-    function showAuthGate(returnTo = "/", message = "Sign in with Discord to continue.") {
-      showView("home-view");
-      $("#auth-gate").hidden = false;
-      $("#report-section").hidden = true;
-      $("#auth-copy").textContent = message;
-      $("#discord-login").href = `${API_BASE}/api/auth/discord/start?return_to=${encodeURIComponent(returnTo)}`;
-    }
-
-    function updateHeader() {
-      const loggedIn = Boolean(currentUser);
-      $("#nav-logs").hidden = !loggedIn;
-      $("#account-name").hidden = !loggedIn;
-      $("#sign-out").hidden = !loggedIn;
-      $("#nav-admin").hidden = !currentUser?.isOwner;
-      $("#account-name").textContent = currentUser ? `Signed in as ${currentUser.username}` : "";
-      const atHome = location.pathname === "/" || location.pathname === "/index.html";
-      const loginReturn = `${API_BASE}/api/auth/discord/start?return_to=${encodeURIComponent(location.pathname + location.search)}`;
-      $("#hero-action").href = loggedIn ? "#report" : `${API_BASE}/api/auth/discord/start`;
-      $("#hero-action").innerHTML = loggedIn
-        ? 'Create a support report <span class="arrow" aria-hidden="true">→</span>'
-        : 'Continue with Discord <span class="arrow" aria-hidden="true">→</span>';
-      $("#auth-gate").hidden = loggedIn;
-      $("#report-section").hidden = !loggedIn;
-      $("#nav-report").href = loggedIn ? (atHome ? "#report" : "/") : loginReturn;
-    }
-
-    async function exchangeOAuthCode() {
-      const params = new URLSearchParams(location.hash.replace(/^#/, ""));
-      const code = params.get("login_code");
-      const authError = params.get("auth_error");
-      if (authError) {
-        history.replaceState(null, "", location.pathname + location.search);
-        setMessage("auth-error", "Discord sign-in did not finish. Please try again.");
-      }
-      if (!code) return;
-      try {
-        const result = await api("/api/auth/exchange", { method: "POST", body: JSON.stringify({ code }) });
-        token = result.token;
-        localStorage.setItem(SESSION_KEY, token);
-        history.replaceState(null, "", location.pathname + location.search);
-      } catch (error) {
-        history.replaceState(null, "", location.pathname + location.search);
-        setMessage("auth-error", error.message);
-      }
-    }
-
-    async function loadMe() {
-      if (!token) return null;
-      try {
-        const result = await api("/api/me");
-        currentUser = result.user;
-        return result;
-      } catch (error) {
-        if (error.status === 401) {
-          localStorage.removeItem(SESSION_KEY);
-          token = "";
-        }
-        currentUser = null;
-        return null;
-      }
-    }
-
-    function makeText(tag, className, text) {
-      const node = document.createElement(tag);
-      if (className) node.className = className;
-      node.textContent = text || "";
-      return node;
-    }
-
-    function formatDate(value) {
-      if (!value) return "";
-      const date = new Date(value);
-      return Number.isNaN(date.getTime()) ? "" : date.toLocaleString();
-    }
-
-    function statusLabel(status) {
-      if (status === "answered") return "Owner replied";
-      if (status === "closed") return "Completed";
-      return "Awaiting reply";
-    }
-
-    function setStatusPill(status) {
-      const pill = $("#ticket-status");
-      pill.textContent = statusLabel(status);
-      pill.className = `status-pill ${status}`;
-    }
-
-    function renderTicket(data) {
-      const ticket = data.ticket;
-      currentTicketId = ticket.id;
-      $("#ticket-title").textContent = ticket.subject;
-      $("#ticket-reference").textContent = `Reference code: ${ticket.id} · Submitted ${formatDate(ticket.created_at)}`;
-      setStatusPill(ticket.status);
-      const details = $("#ticket-details");
-      details.replaceChildren();
-      const rows = [
-        ["Report type", ticket.category],
-        ["Affected project", ticket.project],
-        ["Description", ticket.description],
-        ["Reproduction steps", ticket.steps],
-        ["Expected result", ticket.expected],
-        ["Device / environment", ticket.environment],
-        ["Contact information", ticket.contact]
-      ];
-      for (const [label, value] of rows) {
-        if (!value) continue;
-        const wrapper = document.createElement("div");
-        wrapper.append(makeText("dt", "", label), makeText("dd", "", value));
-        details.append(wrapper);
-      }
-      const messages = $("#owner-messages");
-      messages.replaceChildren();
-      for (const message of data.messages || []) {
-        const card = document.createElement("article");
-        card.className = "owner-message";
-        const head = document.createElement("div");
-        head.className = "owner-message-head";
-        const avatar = document.createElement("img");
-        avatar.className = "owner-avatar";
-        avatar.src = OWNER_AVATAR;
-        avatar.alt = `${OWNER_NAME} profile`;
-        const nameWrap = document.createElement("div");
-        nameWrap.append(makeText("span", "owner-message-name", `Owner message · ${OWNER_NAME}`));
-        nameWrap.append(makeText("span", "message-time", formatDate(message.created_at)));
-        head.append(avatar, nameWrap);
-        card.append(head, makeText("p", "owner-message-body", message.body));
-        messages.append(card);
-      }
-      const waiting = $("#waiting-box");
-      waiting.hidden = ticket.status !== "waiting";
-      if (ticket.status === "waiting") waiting.textContent = "Awaiting reply… This page will check for an owner response automatically.";
-      $("#continue-button").hidden = ticket.status !== "answered";
-      showView("ticket-view");
-    }
-
-    async function loadTicket(ticketId, quiet = false) {
-      try {
-        const data = await api(`/api/tickets/${encodeURIComponent(ticketId)}`);
-        renderTicket(data);
-        setMessage("ticket-error", "");
-        if (data.ticket.status !== "closed" && !pollTimer) {
-          pollTimer = setInterval(() => loadTicket(ticketId, true), 12000);
-        } else if (data.ticket.status === "closed" && pollTimer) {
-          clearInterval(pollTimer);
-          pollTimer = null;
-        }
-      } catch (error) {
-        if (!quiet) {
-          showView("ticket-view");
-          setMessage("ticket-error", error.message);
-        }
-      }
-    }
-
-    async function loadLogs() {
-      showView("logs-view");
-      setMessage("logs-error", "");
-      const list = $("#log-list");
-      list.replaceChildren(makeText("div", "empty-state", "Loading tickets…"));
-      try {
-        const data = await api("/api/logs");
-        list.replaceChildren();
-        if (!data.tickets.length) {
-          list.append(makeText("div", "empty-state", "No tickets yet. Your submitted reports will appear here."));
-          return;
-        }
-        for (const ticket of data.tickets) {
-          const link = document.createElement("a");
-          link.className = "log-item";
-          link.href = `/ticket/${encodeURIComponent(ticket.id)}`;
-          const copy = document.createElement("span");
-          copy.append(makeText("span", "log-title", ticket.subject));
-          copy.append(makeText("span", "log-meta", `${ticket.id} · ${ticket.project} · ${formatDate(ticket.created_at)}`));
-          link.append(copy, makeText("span", `status-pill ${ticket.status}`, statusLabel(ticket.status)));
-          list.append(link);
-        }
-      } catch (error) {
-        list.replaceChildren();
-        setMessage("logs-error", error.message);
-      }
-    }
-
-    async function loadAdminTicketList(selectedId = "") {
-      const list = $("#admin-ticket-list");
-      list.replaceChildren(makeText("div", "empty-state", "Loading tickets…"));
-      const data = await api("/api/admin/tickets");
-      list.replaceChildren();
-      if (!data.tickets.length) list.append(makeText("div", "empty-state", "No reports yet."));
-      for (const ticket of data.tickets) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = `admin-ticket-item${ticket.id === selectedId ? " active" : ""}`;
-        const top = document.createElement("span");
-        top.className = "admin-ticket-top";
-        top.append(makeText("strong", "", ticket.subject), makeText("span", `status-pill ${ticket.status}`, statusLabel(ticket.status)));
-        button.append(top);
-        button.append(makeText("small", "", `${ticket.id} · ${ticket.global_name || ticket.username} · ${formatDate(ticket.created_at)}`));
-        button.addEventListener("click", () => openAdminTicket(ticket.id, true));
-        list.append(button);
-      }
-    }
-
-    async function openAdminTicket(ticketId, updateUrl = false) {
-      currentTicketId = ticketId;
-      if (updateUrl) history.replaceState(null, "", `/admin?ticket=${encodeURIComponent(ticketId)}`);
-      const detail = $("#admin-detail");
-      detail.replaceChildren(makeText("div", "empty-state", "Loading ticket…"));
-      try {
-        const data = await api(`/api/admin/tickets/${encodeURIComponent(ticketId)}`);
-        const ticket = data.ticket;
-        detail.replaceChildren();
-        const header = document.createElement("div");
-        header.className = "section-head";
-        const heading = document.createElement("div");
-        heading.append(makeText("span", "section-kicker", `${ticket.id} · ${statusLabel(ticket.status)}`));
-        heading.append(makeText("h3", "", ticket.subject));
-        header.append(heading);
-        detail.append(header);
-        for (const [label, value] of [
-          ["Reporter", `${ticket.global_name || ticket.username} (${ticket.user_discord_id})`],
-          ["Observed IP", ticket.client_ip_text || "Not available"],
-          ["Project / type", `${ticket.project} · ${ticket.category}`],
-          ["Submitted", formatDate(ticket.created_at)]
-        ]) detail.append(makeText("p", "", `${label}: ${value}`));
-        detail.append(makeText("p", "report-copy", ticket.description));
-        if (ticket.steps) detail.append(makeText("p", "report-copy", `Reproduction steps:\n${ticket.steps}`));
-        if (ticket.expected) detail.append(makeText("p", "report-copy", `Expected result:\n${ticket.expected}`));
-        if (ticket.environment) detail.append(makeText("p", "report-copy", `Environment: ${ticket.environment}`));
-        if (ticket.contact) detail.append(makeText("p", "report-copy", `Contact: ${ticket.contact}`));
-        for (const message of data.messages || []) {
-          const reply = document.createElement("article");
-          reply.className = "owner-message";
-          reply.append(makeText("strong", "owner-message-name", `${OWNER_NAME} · ${formatDate(message.created_at)}`));
-          reply.append(makeText("p", "owner-message-body", message.body));
-          detail.append(reply);
-        }
-
-        const replyForm = document.createElement("form");
-        replyForm.className = "admin-form";
-        replyForm.id = "admin-reply-form";
-        replyForm.innerHTML = '<label for="owner-reply-input">Reply to user</label><textarea id="owner-reply-input" maxlength="4000" required placeholder="Write the response that will appear on the user’s ticket page"></textarea><button class="button primary" type="submit">Send owner reply</button>';
-        replyForm.addEventListener("submit", sendOwnerReply);
-        detail.append(replyForm);
-
-        const banForm = document.createElement("form");
-        banForm.className = "admin-form";
-        banForm.id = "admin-ban-form";
-        banForm.innerHTML = `<h4>Restrict this user</h4>
-          <label>Duration<select name="durationSeconds" required>
-            <option value="3600">1 hour</option><option value="86400">24 hours</option>
-            <option value="604800">7 days</option><option value="2592000">30 days</option>
-            <option value="0">Permanent</option></select></label>
-          <label>Reason<input name="reason" maxlength="500" placeholder="Optional moderation reason"></label>
-          <label><input name="banIp" type="checkbox" ${ticket.client_ip_text ? "" : "disabled"}> Also restrict observed IP (${ticket.client_ip_text || "not available"})</label>
-          <button class="button danger" type="submit">Apply restriction</button>`;
-        banForm.addEventListener("submit", (event) => createBan(event, ticketId));
-        detail.append(banForm);
-        await loadAdminTicketList(ticketId);
-      } catch (error) {
-        detail.replaceChildren(makeText("p", "error-note", error.message));
-      }
-    }
-
-    async function sendOwnerReply(event) {
-      event.preventDefault();
-      const input = $("#owner-reply-input");
-      const button = event.currentTarget.querySelector("button[type=submit]");
-      button.disabled = true;
-      try {
-        await api(`/api/admin/tickets/${encodeURIComponent(currentTicketId)}/reply`, {
-          method: "POST", body: JSON.stringify({ message: input.value })
-        });
-        await openAdminTicket(currentTicketId, false);
-        await loadBans();
-      } catch (error) {
-        setMessage("admin-error", error.message);
-      } finally {
-        button.disabled = false;
-      }
-    }
-
-    async function createBan(event, ticketId) {
-      event.preventDefault();
-      const form = event.currentTarget;
-      const formData = new FormData(form);
-      try {
-        await api(`/api/admin/tickets/${encodeURIComponent(ticketId)}/ban`, {
-          method: "POST",
-          body: JSON.stringify({
-            durationSeconds: Number(formData.get("durationSeconds")),
-            reason: formData.get("reason"),
-            banIp: formData.get("banIp") === "on"
-          })
-        });
-        setMessage("admin-error", "Restriction applied.");
-        await loadBans();
-      } catch (error) {
-        setMessage("admin-error", error.message);
-      }
-    }
-
-    async function loadBans() {
-      const list = $("#ban-list");
-      list.replaceChildren(makeText("div", "empty-state", "Loading restrictions…"));
-      try {
-        const data = await api("/api/admin/bans");
-        list.replaceChildren();
-        if (!data.bans.length) list.append(makeText("div", "empty-state", "No active restrictions."));
-        for (const ban of data.bans) {
-          const row = document.createElement("div");
-          row.className = "ban-item";
-          row.append(makeText("p", "", `${ban.discord_id ? `Discord ${ban.discord_id}` : ""}${ban.ip_address ? ` · IP ${ban.ip_address}` : ""} · ${ban.reason || "No reason"} · ${ban.expires_at ? `Until ${formatDate(ban.expires_at)}` : "Permanent"}`));
-          const button = makeText("button", "button secondary small-button", "Unban");
-          button.type = "button";
-          button.addEventListener("click", async () => {
-            try { await api(`/api/admin/bans/${ban.id}`, { method: "DELETE" }); await loadBans(); }
-            catch (error) { setMessage("admin-error", error.message); }
-          });
-          row.append(button);
-          list.append(row);
-        }
-      } catch (error) {
-        list.replaceChildren(makeText("p", "error-note", error.message));
-      }
-    }
-
-    async function showAdmin() {
-      if (!currentUser?.isOwner) {
-        showView("admin-view");
-        $("#admin-detail").replaceChildren(makeText("p", "error-note", "Owner access is required."));
-        return;
-      }
-      showView("admin-view");
-      setMessage("admin-error", "");
-      const selectedId = new URLSearchParams(location.search).get("ticket") || "";
-      try {
-        await loadAdminTicketList(selectedId);
-        await loadBans();
-        if (selectedId) await openAdminTicket(selectedId, false);
-      } catch (error) {
-        setMessage("admin-error", error.message);
-      }
-    }
-
-    async function route() {
-      await exchangeOAuthCode();
-      const me = await loadMe();
-      updateHeader();
-      const path = location.pathname.replace(/\/+$/, "") || "/";
-
-      if (path.startsWith("/ticket/")) {
-        if (!me) {
-          showAuthGate(path + location.search, "Sign in with Discord to view this ticket. After sign-in, you will return to this page.");
-          return;
-        }
-        await loadTicket(decodeURIComponent(path.slice("/ticket/".length)));
-        return;
-      }
-      if (path === "/logs") {
-        if (!me) { showAuthGate(path + location.search, "Sign in with Discord to view your ticket history."); return; }
-        await loadLogs();
-        return;
-      }
-      if (path === "/admin") {
-        if (!me) { showAuthGate(path + location.search, "Sign in with your allowlisted owner Discord account."); return; }
-        await showAdmin();
-        return;
-      }
-      showView("home-view");
-      if (!me) return;
-      if (me.activeTicket) {
-        location.replace(`/ticket/${encodeURIComponent(me.activeTicket.id)}`);
-        return;
-      }
-      $("#report-section").hidden = false;
     }
 
     $("#menu-toggle").addEventListener("click", () => {
@@ -927,22 +455,22 @@
       $("#menu-toggle").setAttribute("aria-expanded", String(open));
       $("#menu-toggle").textContent = open ? "×" : "☰";
     });
-    $("#nav-menu").querySelectorAll("a").forEach((link) => link.addEventListener("click", () => $("#nav-menu").classList.remove("open")));
-    $("#sign-out").addEventListener("click", async () => {
-      try { await api("/api/auth/logout", { method: "POST" }); } catch {}
-      localStorage.removeItem(SESSION_KEY);
-      token = "";
-      currentUser = null;
-      location.href = "/";
-    });
+    $("#nav-menu").querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      $("#nav-menu").classList.remove("open");
+      $("#menu-toggle").setAttribute("aria-expanded", "false");
+      $("#menu-toggle").textContent = "☰";
+    }));
+
     $("#description").addEventListener("input", () => {
       $("#description-count").textContent = `${$("#description").value.length} / 2500`;
     });
-    $("#report-form").addEventListener("submit", async (event) => {
+
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      setMessage("form-status", "");
-      if (!event.currentTarget.reportValidity()) return;
-      const formData = new FormData(event.currentTarget);
+      setStatus("");
+      if (!form.reportValidity()) return;
+
+      const formData = new FormData(form);
       const payload = {
         category: formData.get("category"),
         scriptName: formData.get("scriptName"),
@@ -961,31 +489,15 @@
       $("#button-label").textContent = "Sending…";
       try {
         const result = await api("/api/report", { method: "POST", body: JSON.stringify(payload) });
-        location.href = `/ticket/${encodeURIComponent(result.ticketId)}`;
+        setStatus(`Your report was sent to the support team. Reference code: ${result.referenceCode}. Keep it for follow-up. Replies and history are not shown on this website.`, "success");
+        form.reset();
+        $("#description-count").textContent = "0 / 2500";
       } catch (error) {
-        if (error.status === 409 && error.data?.ticketId) {
-          location.href = `/ticket/${encodeURIComponent(error.data.ticketId)}`;
-          return;
-        }
-        setMessage("form-status", error.message);
+        setStatus(error.message || "The report could not be sent. Please try again.", "error");
       } finally {
         button.disabled = false;
         $("#button-label").textContent = "Submit report";
       }
-    });
-    $("#continue-button").addEventListener("click", async () => {
-      try {
-        await api(`/api/tickets/${encodeURIComponent(currentTicketId)}/continue`, { method: "POST", body: "{}" });
-        location.href = "/";
-      } catch (error) { setMessage("ticket-error", error.message); }
-    });
-    $("#refresh-admin").addEventListener("click", () => showAdmin().catch((error) => setMessage("admin-error", error.message)));
-
-    route().catch((error) => {
-      showView("home-view");
-      setMessage("auth-error", error.message || "The support center could not be loaded.");
-      $("#auth-gate").hidden = false;
-      $("#report-section").hidden = true;
     });
   </script>
 </body>
