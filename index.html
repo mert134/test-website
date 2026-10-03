@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,43 +44,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#08080a">
-  <meta name="description" content="Zanity scriptleri için destek, hata bildirimi ve sık sorulan sorular.">
-  <meta property="og:title" content="Zanity · Rapor Merkezi">
-  <meta property="og:description" content="Zanity projeleri için destek ve hata bildirimi.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/mert134/zanity-project/main/zanity-logo.png">
-  <title>Zanity · Rapor Merkezi</title>
+  <meta name="description" content="Support and report center for Zanity projects.">
+  <meta property="og:title" content="Zanity — Support Center">
+  <meta property="og:description" content="Get help with a Zanity project or send a report.">
+  <meta property="og:image" content="https://reports.zanity.net/zanity-logo.png">
+  <title>Zanity — Support Center</title>
   <style>
     :root {
       color-scheme: dark;
       --bg: #08080a;
-      --panel: #111115;
-      --panel-soft: #15151a;
+      --surface: #111115;
+      --surface-raised: #15151a;
       --line: rgba(255,255,255,.09);
-      --line-strong: rgba(255,255,255,.16);
+      --line-strong: rgba(255,255,255,.17);
       --text: #f1f1f4;
       --silver: #d4d4dd;
       --muted: #9b9ba4;
       --subtle: #707079;
-      --accent: #e8e8ef;
       --success: #7ce0b2;
       --danger: #ff8895;
-      --radius: 18px;
+      --radius: 17px;
       --max: 1160px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
     body {
-      margin: 0;
       min-height: 100vh;
+      margin: 0;
       overflow-x: hidden;
       color: var(--text);
       background:
-        radial-gradient(ellipse 720px 360px at 50% -150px, rgba(205,205,225,.13), transparent 72%),
+        radial-gradient(ellipse 760px 400px at 50% -175px, rgba(205,205,225,.14), transparent 72%),
         linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
         var(--bg);
-      background-size: auto, 54px 54px, 54px 54px, auto;
+      background-size: auto, 56px 56px, 56px 56px, auto;
       background-position: center top, center top, center top, center;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       line-height: 1.6;
@@ -88,375 +88,371 @@
     a { color: inherit; }
     button, input, select, textarea { font: inherit; }
     button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-      outline: 2px solid rgba(240,240,250,.8);
+      outline: 2px solid rgba(240,240,250,.82);
       outline-offset: 3px;
     }
-    .wrap { width: min(var(--max), calc(100% - 44px)); margin: 0 auto; }
-    .topbar {
+    .shell { width: min(var(--max), calc(100% - 44px)); margin-inline: auto; }
+
+    /* Header and navigation */
+    .site-header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      border-bottom: 1px solid transparent;
-      background: rgba(8,8,10,.72);
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,8,10,.88);
       backdrop-filter: blur(16px);
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: 20px; }
-    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 37px;
-      height: 37px;
-      border: 1px solid rgba(255,255,255,.24);
-      border-radius: 11px;
-      color: #fff;
-      background: linear-gradient(145deg, #303039, #111115 70%);
-      box-shadow: 0 0 22px rgba(220,220,240,.1), inset 0 1px rgba(255,255,255,.18);
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -.1em;
+    .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 76px; gap: 22px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; min-width: 190px; text-decoration: none; }
+    .brand-logo { display: block; width: 126px; height: 40px; object-fit: contain; object-position: left center; }
+    .brand-divider { width: 1px; height: 30px; background: var(--line-strong); }
+    .brand-caption { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.035);
+      box-shadow: inset 0 1px rgba(255,255,255,.025);
     }
-    .brand-word { color: var(--silver); font-size: 15px; font-weight: 850; letter-spacing: .25em; }
-    .brand-word span { color: #fff; }
-    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; padding: 0; margin: 0; }
-    .nav-links a {
+    .nav-link {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       min-height: 38px;
       padding: 0 13px;
       border: 1px solid transparent;
-      border-radius: 10px;
+      border-radius: 9px;
       color: var(--muted);
-      font-size: 12px;
+      background: transparent;
+      font-size: 11px;
+      font-weight: 700;
       text-decoration: none;
-      transition: .2s ease;
+      white-space: nowrap;
+      transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease;
     }
-    .nav-links a:hover { color: #fff; border-color: var(--line); background: rgba(255,255,255,.04); }
-    .nav-main { color: var(--silver) !important; }
-    .menu-button { display: none; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 10px; color: var(--silver); background: transparent; cursor: pointer; }
+    .nav-link:hover { color: #fff; border-color: var(--line-strong); background: rgba(255,255,255,.07); }
+    .nav-link.nav-report { color: #111115; background: linear-gradient(180deg, #fff, #d0d0d9); box-shadow: 0 4px 14px rgba(255,255,255,.09); }
+    .nav-link.nav-report:hover { color: #000; background: #fff; transform: translateY(-1px); }
+    .nav-link.nav-external { border-color: var(--line); color: var(--silver); background: rgba(255,255,255,.025); }
+    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--line-strong); border-radius: 11px; color: var(--text); background: var(--surface-raised); cursor: pointer; }
 
-    .hero { position: relative; padding: 96px 0 70px; }
-    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(270px, .85fr); gap: 48px; align-items: center; }
+    /* Hero */
+    .hero { padding: 92px 0 68px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0,1.14fr) minmax(290px,.86fr); align-items: center; gap: 50px; }
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding: 7px 13px;
+      min-height: 30px;
+      padding: 0 12px;
       border: 1px solid var(--line-strong);
       border-radius: 99px;
       color: var(--muted);
-      background: rgba(255,255,255,.025);
-      font-size: 10px;
-      font-weight: 750;
-      letter-spacing: .21em;
+      background: rgba(255,255,255,.035);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .2em;
       text-transform: uppercase;
     }
-    .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: #f3f3f7; box-shadow: 0 0 12px #fff; }
-    h1 { max-width: 750px; margin: 24px 0 17px; font-size: clamp(42px, 6.7vw, 76px); line-height: .99; letter-spacing: -.065em; font-weight: 850; }
-    h1 span { color: transparent; background: linear-gradient(100deg, #fff 0%, #b6b6c2 80%); -webkit-background-clip: text; background-clip: text; }
-    .hero-copy { max-width: 600px; margin: 0; color: var(--muted); font-size: 15px; }
-    .hero-copy strong { color: var(--silver); font-weight: 650; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; }
+    .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: #f4f4f7; box-shadow: 0 0 12px #fff; }
+    h1 { max-width: 720px; margin: 24px 0 16px; color: #f4f4f7; font-size: clamp(42px,6.6vw,74px); font-weight: 850; line-height: .99; letter-spacing: -.065em; }
+    h1 span { color: transparent; background: linear-gradient(100deg,#fff 0%,#b8b8c3 85%); -webkit-background-clip: text; background-clip: text; }
+    .hero-copy { max-width: 590px; margin: 0; color: var(--muted); font-size: 14px; }
+    .hero-copy strong { color: var(--silver); font-weight: 700; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 27px; }
     .button {
       display: inline-flex;
-      justify-content: center;
       align-items: center;
-      gap: 9px;
-      min-height: 44px;
-      padding: 0 17px;
+      justify-content: center;
+      gap: 8px;
+      min-height: 43px;
+      padding: 0 15px;
       border: 1px solid var(--line-strong);
-      border-radius: 11px;
+      border-radius: 10px;
       color: var(--silver);
-      background: rgba(255,255,255,.03);
-      font-size: 12px;
-      font-weight: 700;
+      background: rgba(255,255,255,.045);
+      box-shadow: inset 0 1px rgba(255,255,255,.035);
+      font-size: 11px;
+      font-weight: 750;
       text-decoration: none;
+      white-space: nowrap;
       cursor: pointer;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      transition: transform .18s ease, color .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
-    .button:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.07); }
-    .button-primary { border-color: #efeff4; color: #111115; background: linear-gradient(180deg, #fff, #ceced8); box-shadow: 0 8px 26px rgba(210,210,230,.15); }
-    .button-primary:hover { color: #000; background: #fff; }
-    .button-small { min-height: 37px; padding: 0 12px; font-size: 11px; }
-    .arrow { color: inherit; font-size: 16px; line-height: 1; }
+    .button:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.34); color: #fff; background: rgba(255,255,255,.09); box-shadow: 0 8px 24px rgba(0,0,0,.24); }
+    .button-primary { border-color: #efeff4; color: #101014; background: linear-gradient(180deg,#fff,#cfcfd8); box-shadow: 0 7px 22px rgba(225,225,240,.13); }
+    .button-primary:hover { border-color: white; color: #000; background: #fff; box-shadow: 0 9px 27px rgba(225,225,240,.2); }
+    .button-small { min-height: 35px; padding-inline: 11px; font-size: 10px; }
+    .arrow { font-size: 15px; line-height: 1; }
 
-    .hero-aside {
+    .overview-card {
       position: relative;
-      padding: 25px;
-      border: 1px solid var(--line);
+      overflow: hidden;
+      padding: 23px;
+      border: 1px solid var(--line-strong);
       border-radius: var(--radius);
-      background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.015) 52%), var(--panel);
-      box-shadow: 0 24px 70px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.05);
-      overflow: hidden;
+      background: linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.012) 60%),var(--surface);
+      box-shadow: 0 24px 70px rgba(0,0,0,.32), inset 0 1px rgba(255,255,255,.045);
     }
-    .hero-aside::before { content: ""; position: absolute; top: -110px; right: -65px; width: 230px; height: 230px; border-radius: 50%; border: 1px solid rgba(255,255,255,.09); box-shadow: 0 0 0 24px rgba(255,255,255,.018), 0 0 0 50px rgba(255,255,255,.014); }
-    .aside-top { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 17px; border-bottom: 1px solid var(--line); }
-    .aside-title { color: var(--silver); font-size: 11px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
-    .project-count { color: var(--subtle); font-size: 10px; }
-    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 21px 0 19px; }
-    .stat { padding-right: 9px; border-right: 1px solid var(--line); }
-    .stat:last-child { border-right: 0; }
-    .stat strong { display: block; color: #f3f3f7; font-size: 25px; line-height: 1.2; letter-spacing: -.04em; }
-    .stat span { display: block; margin-top: 4px; color: var(--subtle); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
-    .steps-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
-    .steps-list li { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 11px; }
-    .step-num { display: grid; place-items: center; flex: 0 0 23px; width: 23px; height: 23px; border: 1px solid var(--line-strong); border-radius: 8px; color: var(--silver); background: rgba(255,255,255,.04); font-size: 9px; font-weight: 800; }
+    .overview-card::after { content: ""; position: absolute; top: -115px; right: -62px; width: 220px; height: 220px; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; box-shadow: 0 0 0 23px rgba(255,255,255,.018),0 0 0 50px rgba(255,255,255,.012); pointer-events: none; }
+    .overview-head { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 15px; border-bottom: 1px solid var(--line); }
+    .overview-title { color: var(--silver); font-size: 10px; font-weight: 850; letter-spacing: .18em; text-transform: uppercase; }
+    .overview-note { color: var(--subtle); font-size: 9px; }
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; padding: 20px 0 18px; }
+    .stat { border-right: 1px solid var(--line); }
+    .stat:last-child { border: 0; }
+    .stat strong { display: block; color: #f1f1f5; font-size: 25px; line-height: 1.1; letter-spacing: -.04em; }
+    .stat span { display: block; margin-top: 5px; color: var(--subtle); font-size: 8px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .overview-steps { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .overview-steps li { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 10px; }
+    .step-num { display: grid; place-items: center; width: 23px; height: 23px; flex: 0 0 23px; border: 1px solid var(--line-strong); border-radius: 8px; color: var(--silver); background: rgba(255,255,255,.045); font-size: 8px; font-weight: 850; }
 
-    .section { padding: 72px 0; border-top: 1px solid rgba(255,255,255,.055); }
-    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 28px; }
-    .section-kicker { display: block; margin-bottom: 7px; color: var(--subtle); font-size: 9px; font-weight: 800; letter-spacing: .25em; text-transform: uppercase; }
-    h2 { margin: 0; color: #f1f1f4; font-size: clamp(26px, 4vw, 38px); line-height: 1.1; letter-spacing: -.045em; }
-    .section-intro { max-width: 460px; margin: 10px 0 0; color: var(--muted); font-size: 13px; }
-    .section-side-note { max-width: 250px; color: var(--subtle); font-size: 10px; text-align: right; }
-    .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
-    .project-card {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 15px;
-      background: linear-gradient(180deg, rgba(255,255,255,.025), transparent 40%), #101014;
-      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
-    }
-    .project-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.22); box-shadow: 0 20px 48px rgba(0,0,0,.35), 0 0 28px rgba(255,255,255,.04); }
-    .project-image-wrap { position: relative; overflow: hidden; aspect-ratio: 16/9; border-bottom: 1px solid var(--line); background: #15151a; }
-    .project-image { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease, filter .3s ease; filter: saturate(.82); }
-    .project-card:hover .project-image { transform: scale(1.035); filter: saturate(1); }
-    .image-shade { position: absolute; inset: 45% 0 0; pointer-events: none; background: linear-gradient(transparent, rgba(5,5,7,.6)); }
-    .game-badge { position: absolute; top: 12px; left: 12px; padding: 5px 9px; border: 1px solid rgba(255,255,255,.22); border-radius: 99px; color: white; background: rgba(8,8,10,.72); backdrop-filter: blur(8px); font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-    .project-body { display: flex; flex: 1; flex-direction: column; padding: 17px; }
-    .project-meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
-    .tag { display: inline-flex; align-items: center; gap: 5px; min-height: 22px; padding: 2px 8px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); background: rgba(255,255,255,.025); font-size: 8px; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; }
-    .tag-live { color: #e4e4eb; border-color: rgba(255,255,255,.21); }
-    .tag-dot { width: 5px; height: 5px; border-radius: 50%; background: #d5d5df; box-shadow: 0 0 8px rgba(255,255,255,.6); }
-    .project-card h3 { margin: 0; color: #f7f7f9; font-size: 18px; letter-spacing: -.02em; }
-    .project-card p { flex: 1; margin: 7px 0 16px; color: var(--muted); font-size: 11px; line-height: 1.7; }
-    .project-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+    /* Shared sections */
+    .section { padding: 66px 0; border-top: 1px solid rgba(255,255,255,.06); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 25px; }
+    .section-kicker { display: block; margin-bottom: 6px; color: var(--subtle); font-size: 8px; font-weight: 850; letter-spacing: .24em; text-transform: uppercase; }
+    h2 { margin: 0; color: #f2f2f5; font-size: clamp(26px,4vw,37px); line-height: 1.1; letter-spacing: -.045em; }
+    .section-copy { max-width: 570px; margin: 9px 0 0; color: var(--muted); font-size: 11px; }
+    .section-aside { max-width: 260px; margin: 0; color: var(--subtle); font-size: 9px; text-align: right; }
+
+    /* Project cards */
+    .project-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+    .project-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 15px; background: #101014; transition: transform .22s ease,border-color .22s ease,box-shadow .22s ease; }
+    .project-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.24); box-shadow: 0 18px 46px rgba(0,0,0,.36),0 0 24px rgba(255,255,255,.035); }
+    .project-cover { position: relative; overflow: hidden; aspect-ratio: 16/9; border-bottom: 1px solid var(--line); background: #17171c; }
+    .project-cover img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.82); transition: transform .4s ease,filter .3s ease; }
+    .project-card:hover .project-cover img { transform: scale(1.035); filter: saturate(1); }
+    .cover-label { position: absolute; top: 11px; left: 11px; min-height: 23px; display: inline-flex; align-items: center; padding: 0 9px; border: 1px solid rgba(255,255,255,.24); border-radius: 99px; color: white; background: rgba(8,8,10,.77); backdrop-filter: blur(8px); font-size: 8px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    .project-body { display: flex; flex: 1; flex-direction: column; padding: 16px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 9px; }
+    .tag { min-height: 21px; display: inline-flex; align-items: center; gap: 5px; padding: 2px 7px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); background: rgba(255,255,255,.025); font-size: 7px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+    .tag-live { border-color: rgba(255,255,255,.24); color: #ececf0; }
+    .tag-dot { width: 5px; height: 5px; border-radius: 50%; background: #dddde4; box-shadow: 0 0 8px rgba(255,255,255,.6); }
+    .project-body h3 { margin: 0; color: #f5f5f7; font-size: 17px; letter-spacing: -.025em; }
+    .project-body p { flex: 1; margin: 7px 0 15px; color: var(--muted); font-size: 10px; line-height: 1.7; }
+    .project-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; }
     .project-actions a { text-decoration: none; }
 
-    .report-layout { display: grid; grid-template-columns: minmax(0, 1fr) 285px; align-items: start; gap: 18px; }
-    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(17,17,21,.94); box-shadow: 0 18px 56px rgba(0,0,0,.22); }
-    .report-panel { padding: clamp(20px, 4vw, 32px); }
-    .panel-heading { margin-bottom: 23px; }
-    .panel-heading h3 { margin: 0; color: #f5f5f7; font-size: 20px; letter-spacing: -.03em; }
-    .panel-heading p { margin: 6px 0 0; color: var(--muted); font-size: 11px; }
-    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+    /* Report form */
+    .report-layout { display: grid; grid-template-columns: minmax(0,1fr) 275px; align-items: start; gap: 16px; }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(17,17,21,.96); box-shadow: 0 17px 50px rgba(0,0,0,.24); }
+    .report-panel { padding: clamp(20px,4vw,31px); }
+    .panel-heading { margin-bottom: 21px; }
+    .panel-heading h3 { margin: 0; color: #f5f5f7; font-size: 19px; letter-spacing: -.03em; }
+    .panel-heading p { margin: 5px 0 0; color: var(--muted); font-size: 10px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
     .field { min-width: 0; }
-    .field.full { grid-column: 1 / -1; }
-    .field label { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 6px; color: #d9d9e0; font-size: 10px; font-weight: 750; letter-spacing: .03em; }
-    .required { color: #efeff5; }
-    .optional { color: var(--subtle); font-size: 9px; font-weight: 500; }
-    input, select, textarea {
-      display: block;
-      width: 100%;
-      border: 1px solid rgba(255,255,255,.11);
-      border-radius: 10px;
-      color: var(--text);
-      background: #0b0b0e;
-      transition: border-color .18s, box-shadow .18s, background .18s;
-    }
-    input, select { height: 42px; padding: 0 12px; }
-    textarea { min-height: 105px; padding: 11px 12px; resize: vertical; }
-    textarea.small { min-height: 72px; }
-    input::placeholder, textarea::placeholder { color: #686870; }
-    input:hover, select:hover, textarea:hover { border-color: rgba(255,255,255,.2); }
-    input:focus, select:focus, textarea:focus { outline: 0; border-color: rgba(225,225,240,.58); box-shadow: 0 0 0 3px rgba(220,220,240,.07); background: #101014; }
-    select { appearance: none; padding-right: 36px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23a0a0aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
+    .field.full { grid-column: 1/-1; }
+    .field label { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; color: #dedee5; font-size: 9px; font-weight: 800; letter-spacing: .04em; }
+    .required { color: #f6f6f8; }
+    .optional,.counter { color: var(--subtle); font-size: 8px; font-weight: 500; }
+    input,select,textarea { display: block; width: 100%; border: 1px solid rgba(255,255,255,.12); border-radius: 9px; color: var(--text); background: #0a0a0d; transition: border-color .18s,box-shadow .18s,background .18s; }
+    input,select { height: 41px; padding: 0 11px; }
+    textarea { min-height: 100px; padding: 10px 11px; resize: vertical; }
+    textarea.short { min-height: 70px; }
+    input::placeholder,textarea::placeholder { color: #686870; }
+    input:hover,select:hover,textarea:hover { border-color: rgba(255,255,255,.22); }
+    input:focus,select:focus,textarea:focus { outline: none; border-color: rgba(235,235,245,.65); background: #101014; box-shadow: 0 0 0 3px rgba(225,225,240,.07); }
+    select { appearance: none; padding-right: 35px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23a0a0aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 11px center; }
     select option { color: var(--text); background: #111115; }
-    .hint { margin: 5px 0 0; color: var(--subtle); font-size: 9px; }
-    .count { color: var(--subtle); font-size: 9px; font-weight: 450; }
-    .consent { display: flex; align-items: flex-start; gap: 9px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); background: rgba(255,255,255,.025); font-size: 9px; line-height: 1.55; }
-    .consent input { flex: 0 0 14px; width: 14px; height: 14px; margin: 1px 0 0; accent-color: #ececf2; }
+    .hint { margin: 5px 0 0; color: var(--subtle); font-size: 8px; }
+    .consent { display: flex; align-items: flex-start; gap: 9px; padding: 10px 11px; border: 1px solid var(--line); border-radius: 9px; color: var(--muted); background: rgba(255,255,255,.025); font-size: 8px; line-height: 1.55; }
+    .consent input { flex: 0 0 14px; width: 14px; height: 14px; margin: 1px 0 0; accent-color: #eeeef4; }
     .consent label { display: block; margin: 0; color: inherit; font-weight: 500; cursor: pointer; }
     .consent strong { color: var(--silver); }
-    .form-bottom { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-top: 15px; }
-    .form-note { max-width: 320px; margin: 0; color: var(--subtle); font-size: 9px; }
-    .submit { min-width: 156px; }
-    .status { display: none; margin-top: 14px; padding: 11px 13px; border: 1px solid transparent; border-radius: 10px; font-size: 10px; }
+    .form-bottom { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 15px; }
+    .form-note { max-width: 330px; margin: 0; color: var(--subtle); font-size: 8px; }
+    .submit { min-width: 155px; }
+    .status { display: none; margin-top: 13px; padding: 11px 12px; border: 1px solid transparent; border-radius: 9px; font-size: 9px; }
     .status.show { display: block; }
-    .status.success { border-color: rgba(124,224,178,.24); color: #a9edd0; background: rgba(72,160,120,.1); }
+    .status.success { border-color: rgba(124,224,178,.25); color: #a9edd0; background: rgba(72,160,120,.1); }
     .status.error { border-color: rgba(255,136,149,.25); color: #ffb1ba; background: rgba(170,60,75,.1); }
-    .status.info { border-color: rgba(220,220,240,.17); color: var(--silver); background: rgba(255,255,255,.04); }
-    .report-aside { display: grid; gap: 13px; }
-    .aside-card { padding: 18px; }
-    .aside-icon { display: grid; place-items: center; width: 32px; height: 32px; margin-bottom: 11px; border: 1px solid var(--line-strong); border-radius: 10px; color: #efeff4; background: rgba(255,255,255,.04); font-size: 14px; }
-    .aside-card h4 { margin: 0 0 5px; color: var(--silver); font-size: 12px; }
-    .aside-card p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
-    .aside-card ul { display: grid; gap: 8px; margin: 12px 0 0; padding: 0; list-style: none; }
-    .aside-card li { display: flex; gap: 8px; color: var(--muted); font-size: 9px; }
+    .status.info { border-color: var(--line-strong); color: var(--silver); background: rgba(255,255,255,.04); }
+    .report-aside { display: grid; gap: 12px; }
+    .aside-card { padding: 17px; }
+    .aside-icon { display: grid; place-items: center; width: 31px; height: 31px; margin-bottom: 10px; border: 1px solid var(--line-strong); border-radius: 9px; color: #eeeef3; background: rgba(255,255,255,.045); font-size: 13px; }
+    .aside-card h4 { margin: 0 0 5px; color: var(--silver); font-size: 11px; }
+    .aside-card p { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.7; }
+    .aside-card ul { display: grid; gap: 7px; margin: 11px 0 0; padding: 0; list-style: none; }
+    .aside-card li { display: flex; gap: 7px; color: var(--muted); font-size: 8px; }
     .aside-card li::before { content: "—"; color: var(--silver); }
-    .aside-sep { height: 1px; margin: 13px 0; background: var(--line); }
+    .aside-divider { height: 1px; margin: 12px 0; background: var(--line); }
 
+    /* FAQ */
     .faq-list { max-width: 850px; }
-    details.faq { border: 1px solid var(--line); border-radius: 12px; background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); overflow: hidden; }
-    details.faq + details.faq { margin-top: 9px; }
-    details.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 17px; color: #e9e9ee; font-size: 11px; font-weight: 650; list-style: none; cursor: pointer; }
+    details.faq { overflow: hidden; border: 1px solid var(--line); border-radius: 11px; background: linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012)); }
+    details.faq + details.faq { margin-top: 8px; }
+    details.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 14px 16px; color: #e9e9ee; font-size: 10px; font-weight: 700; list-style: none; cursor: pointer; }
     details.faq summary::-webkit-details-marker { display: none; }
-    details.faq summary:hover { background: rgba(255,255,255,.035); }
-    .plus { position: relative; flex: 0 0 15px; width: 15px; height: 15px; opacity: .7; transition: transform .2s; }
-    .plus::before, .plus::after { content: ""; position: absolute; top: 50%; left: 50%; width: 12px; height: 1px; background: var(--silver); transform: translate(-50%,-50%); }
+    details.faq summary:hover { background: rgba(255,255,255,.04); }
+    .plus { position: relative; width: 14px; height: 14px; flex: 0 0 14px; opacity: .7; transition: transform .2s ease; }
+    .plus::before,.plus::after { position: absolute; top: 50%; left: 50%; width: 11px; height: 1px; content: ""; background: var(--silver); transform: translate(-50%,-50%); }
     .plus::after { transform: translate(-50%,-50%) rotate(90deg); }
     details[open] .plus { transform: rotate(45deg); }
-    .answer { padding: 0 17px 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; line-height: 1.75; }
-    .answer p { margin: 12px 0 0; }
-    .answer a { color: var(--silver); }
+    .answer { padding: 0 16px 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 9px; line-height: 1.75; }
+    .answer p { margin: 11px 0 0; }
 
-    footer { padding: 23px 0 31px; border-top: 1px solid var(--line); }
-    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; color: var(--subtle); font-size: 9px; }
-    .footer-row strong { color: var(--muted); font-weight: 700; }
-    .footer-links { display: flex; gap: 15px; }
+    footer { padding: 21px 0 29px; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 14px; color: var(--subtle); font-size: 8px; }
+    .footer-inner strong { color: var(--muted); font-weight: 750; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 14px; }
     .footer-links a { color: var(--muted); text-decoration: none; }
     .footer-links a:hover { color: white; }
-    .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
+    .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
 
-    @media (max-width: 880px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 27px; }
-      .hero-aside { max-width: none; }
-      .project-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    @media(max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .overview-card { max-width: none; }
+      .project-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
       .report-layout { grid-template-columns: 1fr; }
       .report-aside { grid-template-columns: repeat(2,minmax(0,1fr)); }
     }
-    @media (max-width: 620px) {
-      .wrap { width: min(var(--max), calc(100% - 30px)); }
-      .nav { min-height: 64px; }
-      .menu-button { display: grid; place-items: center; }
-      .nav-links { position: absolute; top: 64px; left: 0; right: 0; display: none; flex-direction: column; align-items: stretch; padding: 10px 15px 15px; border-bottom: 1px solid var(--line); background: rgba(8,8,10,.97); }
-      .nav-links.open { display: flex; }
-      .nav-links a { min-height: 42px; }
-      .hero { padding: 65px 0 51px; }
-      .hero-grid { gap: 25px; }
-      h1 { font-size: clamp(39px, 13vw, 60px); }
+    @media(max-width: 680px) {
+      .shell { width: min(var(--max),calc(100% - 30px)); }
+      .header-inner { min-height: 68px; }
+      .brand { min-width: 0; gap: 8px; }
+      .brand-logo { width: 104px; height: 34px; }
+      .brand-divider { height: 25px; }
+      .brand-caption { font-size: 7px; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-menu { position: absolute; top: 60px; left: 15px; right: 15px; display: none; flex-direction: column; align-items: stretch; gap: 6px; padding: 10px; border-radius: 13px; background: rgba(15,15,19,.98); box-shadow: 0 18px 45px rgba(0,0,0,.45); }
+      .nav-menu.open { display: flex; }
+      .nav-link { justify-content: flex-start; min-height: 42px; padding-inline: 13px; }
+      .hero { padding: 62px 0 48px; }
+      h1 { font-size: clamp(40px,12vw,61px); }
       .hero-copy { font-size: 12px; }
       .hero-actions .button { flex: 1; }
-      .section { padding: 55px 0; }
-      .section-heading { align-items: start; flex-direction: column; gap: 8px; margin-bottom: 21px; }
-      .section-side-note { max-width: none; text-align: left; }
+      .section { padding: 52px 0; }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+      .section-aside { text-align: left; }
       .project-grid { grid-template-columns: 1fr; }
-      .project-card { display: grid; grid-template-columns: 38% 1fr; min-height: 155px; }
-      .project-image-wrap { height: 100%; min-height: 155px; aspect-ratio: auto; border-right: 1px solid var(--line); border-bottom: 0; }
-      .project-body { padding: 13px; }
-      .project-card h3 { font-size: 15px; }
-      .project-card p { margin: 5px 0 10px; font-size: 10px; }
+      .project-card { display: grid; grid-template-columns: 37% minmax(0,1fr); min-height: 152px; }
+      .project-cover { height: 100%; min-height: 152px; aspect-ratio: auto; border-right: 1px solid var(--line); border-bottom: 0; }
+      .project-body { padding: 12px; }
+      .project-body h3 { font-size: 14px; }
+      .project-body p { margin: 5px 0 9px; font-size: 9px; }
       .project-actions { gap: 5px; }
-      .button-small { min-height: 31px; padding: 0 9px; font-size: 9px; }
-      .form-grid { grid-template-columns: 1fr; gap: 13px; }
+      .button-small { min-height: 30px; padding-inline: 8px; font-size: 8px; }
+      .form-grid { grid-template-columns: 1fr; gap: 12px; }
       .field.full { grid-column: auto; }
       .form-bottom { align-items: stretch; flex-direction: column; }
       .submit { width: 100%; }
       .report-aside { grid-template-columns: 1fr; }
-      .footer-row { align-items: flex-start; flex-direction: column; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
     }
-    @media (prefers-reduced-motion: reduce) {
+    @media(prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap nav">
-      <a class="brand" href="https://offical.zanity.net/" aria-label="Zanity ana site">
-        <span class="brand-mark" aria-hidden="true">Z</span>
-        <span class="brand-word">Z<span>ANITY</span></span>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="https://offical.zanity.net/" aria-label="Zanity main site">
+        <img class="brand-logo" src="https://reports.zanity.net/zanity-logo.png" alt="Zanity logo">
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-caption">Support<br>Center</span>
       </a>
-      <button class="menu-button" id="menu-button" type="button" aria-label="Menüyü aç" aria-expanded="false">☰</button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#projects">Projeler</a></li>
-        <li><a href="#report">Destek bildirimi</a></li>
-        <li><a href="#faq">SSS</a></li>
-        <li><a class="nav-main" href="https://offical.zanity.net/" target="_blank" rel="noopener">Ana site ↗</a></li>
-      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link nav-report" href="#report">Report an issue</a>
+        <a class="nav-link" href="#faq">FAQ</a>
+        <a class="nav-link nav-external" href="https://offical.zanity.net/" target="_blank" rel="noopener">Main site ↗</a>
+      </nav>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="wrap hero-grid">
+      <div class="shell hero-grid">
         <div>
-          <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Zanity · Topluluk desteği</div>
-          <h1>Bir sorun mu var?<br><span>Beraber çözelim.</span></h1>
-          <p class="hero-copy">Zanity projeleriyle ilgili bir hata, kurulum sorunu veya önerin mi var? İlgili projeyi seçip ayrıntıları gönder. <strong>Bildirim doğrudan destek kanalına iletilir.</strong></p>
+          <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Zanity community support</div>
+          <h1>Need help?<br><span>Let’s sort it out.</span></h1>
+          <p class="hero-copy">Found an issue, need help with a project, or have a suggestion? Choose the relevant Zanity project and send a clear report. <strong>Reports go straight to the support channel.</strong></p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#report">Destek bildirimi oluştur <span class="arrow" aria-hidden="true">→</span></a>
-            <a class="button" href="#projects">Projeleri incele</a>
+            <a class="button button-primary" href="#report">Create a support report <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="button" href="#projects">Explore projects</a>
           </div>
         </div>
-        <aside class="hero-aside" aria-label="Zanity proje özeti">
-          <div class="aside-top"><span class="aside-title">Zanity projects</span><span class="project-count">Bağımsız geliştirme</span></div>
-          <div class="hero-stats">
-            <div class="stat"><strong>03</strong><span>Proje</span></div>
-            <div class="stat"><strong>02</strong><span>Aktif</span></div>
-            <div class="stat"><strong>01</strong><span>Yakında</span></div>
+        <aside class="overview-card" aria-label="Zanity project overview">
+          <div class="overview-head"><span class="overview-title">Project overview</span><span class="overview-note">Independent projects</span></div>
+          <div class="stats">
+            <div class="stat"><strong>03</strong><span>Projects</span></div>
+            <div class="stat"><strong>02</strong><span>Working</span></div>
+            <div class="stat"><strong>01</strong><span>Coming soon</span></div>
           </div>
-          <ol class="steps-list">
-            <li><span class="step-num">01</span> Etkilenen scripti seç</li>
-            <li><span class="step-num">02</span> Ne olduğunu ve nasıl tekrarlandığını yaz</li>
-            <li><span class="step-num">03</span> Takip kodunu sakla</li>
+          <ol class="overview-steps">
+            <li><span class="step-num">01</span> Choose the affected project</li>
+            <li><span class="step-num">02</span> Explain what happened</li>
+            <li><span class="step-num">03</span> Keep your reference code</li>
           </ol>
         </aside>
       </div>
     </section>
 
     <section class="section" id="projects">
-      <div class="wrap">
-        <div class="section-heading">
+      <div class="shell">
+        <div class="section-head">
           <div>
             <span class="section-kicker">Zanity collection</span>
-            <h2>Projeler</h2>
-            <p class="section-intro">Rapor göndermeden önce ilgili projeyi seç. Proje kartları ve görselleri Zanity ana sitesinden alınmıştır.</p>
+            <h2>Choose a project</h2>
+            <p class="section-copy">These are the projects currently listed on the Zanity site. Select one to pre-fill the report form, or open its project page for more details.</p>
           </div>
-          <p class="section-side-note">Daha fazla ayrıntı için proje sayfasını açabilir veya doğrudan bildirim oluşturabilirsin.</p>
+          <p class="section-aside">New projects are added whenever development time allows.</p>
         </div>
 
         <div class="project-grid">
           <article class="project-card">
-            <div class="project-image-wrap">
-              <img class="project-image" src="https://raw.githubusercontent.com/mert134/zanity-project/main/criminal-vs-swat.png" alt="Criminal vs SWAT proje görseli" loading="lazy" width="1280" height="720">
-              <span class="image-shade" aria-hidden="true"></span>
-              <span class="game-badge">Roblox</span>
+            <div class="project-cover">
+              <img src="https://raw.githubusercontent.com/mert134/zanity-project/main/criminal-vs-swat.png" alt="Criminal vs SWAT project artwork" loading="lazy" width="1280" height="720">
+              <span class="cover-label">Roblox</span>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span class="tag tag-live"><span class="tag-dot"></span> Çalışıyor</span><span class="tag">v1.0</span><span class="tag">v1.1 beklemede</span></div>
+              <div class="tags"><span class="tag tag-live"><span class="tag-dot"></span> Working</span><span class="tag">v1.0</span><span class="tag">v1.1 waiting</span></div>
               <h3>Criminal vs SWAT</h3>
-              <p>Saldırı seçenekleri, sağlık özellikleri, silah modları, ışınlanma ve daha fazlası.</p>
+              <p>Kill options, godmode, modified guns, teleports, and more — the full package.</p>
               <div class="project-actions">
-                <button class="button button-small button-primary select-project" type="button" data-script="Criminal vs SWAT">Bu proje için bildir</button>
-                <a class="button button-small" href="https://offical.zanity.net/criminal-vs-swat" target="_blank" rel="noopener">Proje sayfası ↗</a>
+                <button class="button button-small button-primary select-project" type="button" data-script="Criminal vs SWAT">Report for this project</button>
+                <a class="button button-small" href="https://offical.zanity.net/criminal-vs-swat" target="_blank" rel="noopener">Details ↗</a>
               </div>
             </div>
           </article>
 
           <article class="project-card">
-            <div class="project-image-wrap">
-              <img class="project-image" src="https://raw.githubusercontent.com/mert134/zanity-project/main/trench-war.png" alt="Trench War proje görseli" loading="lazy" width="1280" height="720">
-              <span class="image-shade" aria-hidden="true"></span>
-              <span class="game-badge">Roblox</span>
+            <div class="project-cover">
+              <img src="https://raw.githubusercontent.com/mert134/zanity-project/main/trench-war.png" alt="Trench War project artwork" loading="lazy" width="1280" height="720">
+              <span class="cover-label">Roblox</span>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span class="tag tag-live"><span class="tag-dot"></span> Çalışıyor</span><span class="tag">v1.0</span><span class="tag">v1.1 beklemede</span></div>
+              <div class="tags"><span class="tag tag-live"><span class="tag-dot"></span> Working</span><span class="tag">v1.0</span><span class="tag">v1.1 waiting</span></div>
               <h3>Trench War</h3>
-              <p>Silah düzenlemeleri, nişan özellikleri ve haritadaki hedeflere ışınlanma seçenekleri.</p>
+              <p>Weapon mods, silent aim, no spread, and flag teleports. Clean and simple.</p>
               <div class="project-actions">
-                <button class="button button-small button-primary select-project" type="button" data-script="Trench War">Bu proje için bildir</button>
-                <a class="button button-small" href="https://offical.zanity.net/trench-war" target="_blank" rel="noopener">Proje sayfası ↗</a>
+                <button class="button button-small button-primary select-project" type="button" data-script="Trench War">Report for this project</button>
+                <a class="button button-small" href="https://offical.zanity.net/trench-war" target="_blank" rel="noopener">Details ↗</a>
               </div>
             </div>
           </article>
 
+    <div class="container">
+        <h1>SİTE HAZIR!!</h1>
           <article class="project-card">
-            <div class="project-image-wrap">
-              <img class="project-image" src="https://raw.githubusercontent.com/mert134/zanity-project/main/audio-hub.png" alt="Audio Hub proje görseli" loading="lazy" width="1280" height="720">
-              <span class="image-shade" aria-hidden="true"></span>
-              <span class="game-badge">Yakında</span>
+            <div class="project-cover">
+              <img src="https://raw.githubusercontent.com/mert134/zanity-project/main/audio-hub.png" alt="Audio Hub project artwork" loading="lazy" width="1280" height="720">
+              <span class="cover-label">Coming soon</span>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span class="tag">Geliştirme aşamasında</span></div>
+              <div class="tags"><span class="tag">In development</span></div>
               <h3>Audio Hub</h3>
-              <p>Ses odaklı yeni bir proje yolda. Şimdilik ayrıntı paylaşılmadı.</p>
+              <p>Something audio-related is on the way. No spoilers for now.</p>
               <div class="project-actions">
-                <button class="button button-small button-primary select-project" type="button" data-script="Audio Hub">Bu proje için bildir</button>
-                <a class="button button-small" href="https://offical.zanity.net/audio-hub" target="_blank" rel="noopener">Proje sayfası ↗</a>
+                <button class="button button-small button-primary select-project" type="button" data-script="Audio Hub">Report for this project</button>
+                <a class="button button-small" href="https://offical.zanity.net/audio-hub" target="_blank" rel="noopener">Details ↗</a>
               </div>
             </div>
           </article>
@@ -464,87 +460,85 @@
       </div>
     </section>
 
-    <div class="container">
-        <h1>SİTE HAZIR!!</h1>
     <section class="section" id="report">
-      <div class="wrap">
-        <div class="section-heading">
+      <div class="shell">
+        <div class="section-head">
           <div>
             <span class="section-kicker">Support request</span>
-            <h2>Destek bildirimi</h2>
-            <p class="section-intro">Sorunu anlaşılır şekilde anlat. Takip kodun gönderimden sonra burada ve Discord bildiriminde görünecek.</p>
+            <h2>Send a report</h2>
+            <p class="section-copy">Tell us what happened and include steps to reproduce it when possible. Your reference code will appear after a successful submission.</p>
           </div>
         </div>
 
         <div class="report-layout">
           <div class="panel report-panel">
             <div class="panel-heading">
-              <h3>Yeni bildirim oluştur</h3>
-              <p><span class="required">*</span> işaretli alanlar zorunludur.</p>
+              <h3>New support report</h3>
+              <p>Fields marked <span class="required">*</span> are required.</p>
             </div>
             <form id="report-form" novalidate>
               <div class="form-grid">
                 <div class="field">
-                  <label for="category">Bildirim türü <span class="required">*</span></label>
+                  <label for="category">What do you need help with? <span class="required">*</span></label>
                   <select id="category" name="category" required>
-                    <option value="" selected disabled>Bir konu seç</option>
-                    <option value="Hata bildirimi">Hata bildirimi</option>
-                    <option value="Kurulum / kullanım">Kurulum / kullanım</option>
-                    <option value="Öneri">Öneri</option>
-                    <option value="Diğer">Diğer</option>
+                    <option value="" selected disabled>Select a topic</option>
+                    <option value="Hata bildirimi">Bug report</option>
+                    <option value="Kurulum / kullanım">Setup / usage help</option>
+                    <option value="Öneri">Suggestion</option>
+                    <option value="Diğer">Other</option>
                   </select>
                 </div>
                 <div class="field">
-                  <label for="script-name">Etkilenen proje <span class="required">*</span></label>
+                  <label for="script-name">Affected project <span class="required">*</span></label>
                   <select id="script-name" name="scriptName" required>
-                    <option value="" selected disabled>Projeyi seç</option>
+                    <option value="" selected disabled>Select a project</option>
                     <option value="Criminal vs SWAT">Criminal vs SWAT</option>
                     <option value="Trench War">Trench War</option>
                     <option value="Audio Hub">Audio Hub</option>
-                    <option value="Diğer / emin değilim">Diğer / emin değilim</option>
+                    <option value="Other / not sure">Other / not sure</option>
                   </select>
                 </div>
                 <div class="field full">
-                  <label for="subject">Kısa başlık <span class="required">*</span></label>
-                  <input id="subject" name="subject" type="text" maxlength="120" placeholder="Örn. Script başlarken hata veriyor" required>
+                  <label for="subject">Short title <span class="required">*</span></label>
+                  <input id="subject" name="subject" type="text" maxlength="120" placeholder="e.g. The script shows an error when I start it" required>
                 </div>
                 <div class="field full">
-                  <label for="description">Sorun ne? <span class="required">*</span><span class="count" id="description-count">0 / 2500</span></label>
-                  <textarea id="description" name="description" maxlength="2500" placeholder="Ne yaparken sorun çıktı? Ekranda ne gördün?" required></textarea>
+                  <label for="description">What happened? <span class="required">*</span><span class="counter" id="description-count">0 / 2500</span></label>
+                  <textarea id="description" name="description" maxlength="2500" placeholder="What were you doing when the issue happened? What did you see?" required></textarea>
                 </div>
                 <div class="field full">
-                  <label for="steps">Sorunu nasıl tekrar oluşturabiliriz? <span class="optional">İsteğe bağlı</span></label>
-                  <textarea class="small" id="steps" name="steps" maxlength="1200" placeholder="1. Şunu yaptım…&#10;2. Sonra…&#10;3. Bu hata oluştu…"></textarea>
+                  <label for="steps">How can we reproduce it? <span class="optional">Optional</span></label>
+                  <textarea class="short" id="steps" name="steps" maxlength="1200" placeholder="1. I did this…&#10;2. Then this happened…&#10;3. The issue appeared…"></textarea>
                 </div>
                 <div class="field">
-                  <label for="expected">Ne olmasını bekliyordun? <span class="optional">İsteğe bağlı</span></label>
-                  <input id="expected" name="expected" type="text" maxlength="800" placeholder="Beklediğin sonucu yaz">
+                  <label for="expected">What did you expect to happen? <span class="optional">Optional</span></label>
+                  <input id="expected" name="expected" type="text" maxlength="800" placeholder="Describe the expected result">
                 </div>
                 <div class="field">
-                  <label for="environment">Oyun / cihaz bilgisi <span class="optional">İsteğe bağlı</span></label>
-                  <input id="environment" name="environment" type="text" maxlength="160" placeholder="Örn. Windows 11, oyun sürümü">
+                  <label for="environment">Device / environment <span class="optional">Optional</span></label>
+                  <input id="environment" name="environment" type="text" maxlength="160" placeholder="e.g. Windows 11, game version">
                 </div>
                 <div class="field full">
-                  <label for="contact">Sana nasıl ulaşalım? <span class="optional">İsteğe bağlı</span></label>
-                  <input id="contact" name="contact" type="text" maxlength="180" placeholder="Discord kullanıcı adı veya e-posta">
-                  <p class="hint">Geri dönüş istemiyorsan boş bırak.</p>
+                  <label for="contact">How can we reach you? <span class="optional">Optional</span></label>
+                  <input id="contact" name="contact" type="text" maxlength="180" placeholder="Discord username or email">
+                  <p class="hint">Leave this blank if you do not need a direct reply.</p>
                 </div>
                 <div class="field full">
                   <div class="consent">
                     <input id="no-secrets" name="noSecrets" type="checkbox" required>
-                    <label for="no-secrets">Mesajımda <strong>şifre, token, webhook adresi veya başka gizli bilgi</strong> bulunmadığını onaylıyorum.</label>
+                    <label for="no-secrets">I confirm this report does not include <strong>passwords, tokens, webhook URLs, or other secrets.</strong></label>
                   </div>
                 </div>
               </div>
 
-              <div class="sr-only" aria-hidden="true">
-                <label for="website">Bu alanı boş bırak</label>
+              <div class="visually-hidden" aria-hidden="true">
+                <label for="website">Leave this field empty</label>
                 <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
               </div>
 
               <div class="form-bottom">
-                <p class="form-note">Bildirimlerin destek ekibinin Discord kanalına iletilir. Lütfen yalnızca sorunun çözümü için gerekli bilgileri paylaş.</p>
-                <button class="button button-primary submit" id="submit-button" type="submit"><span id="button-label">Bildirimi gönder</span><span class="arrow" aria-hidden="true">→</span></button>
+                <p class="form-note">Reports are sent to the Zanity support channel. Share only the details needed to understand the issue.</p>
+                <button class="button button-primary submit" id="submit-button" type="submit"><span id="button-label">Submit report</span><span class="arrow" aria-hidden="true">→</span></button>
               </div>
               <div class="status" id="form-status" role="status" aria-live="polite"></div>
             </form>
@@ -553,20 +547,20 @@
           <aside class="report-aside">
             <section class="panel aside-card">
               <div class="aside-icon" aria-hidden="true">✦</div>
-              <h4>İyi bir bildirim için</h4>
-              <p>Ne kadar net bilgi verirsen sorunu anlamak o kadar kolay olur.</p>
+              <h4>Make your report useful</h4>
+              <p>A little context makes it much easier to understand and reproduce an issue.</p>
               <ul>
-                <li>Hangi projeyi kullandığını belirt.</li>
-                <li>Soruna yol açan adımları sırala.</li>
-                <li>Hata mesajını varsa aynen ekle.</li>
+                <li>Name the affected project.</li>
+                <li>List the steps that caused the issue.</li>
+                <li>Include the exact error text, if any.</li>
               </ul>
             </section>
             <section class="panel aside-card">
               <div class="aside-icon" aria-hidden="true">◇</div>
-              <h4>Gizli bilgilerini koru</h4>
-              <p>Şifre, erişim anahtarı, webhook veya ödeme bilgisi gönderme. Hata görüntüsündeki gizli kısımları paylaşmadan önce kapat.</p>
-              <div class="aside-sep"></div>
-              <p>Bildirim gönderildikten sonra sana bir takip kodu gösterilir. Yanıtını Discord'daki destek kanalından takip edebilirsin.</p>
+              <h4>Keep private data private</h4>
+              <p>Do not submit passwords, access keys, webhook URLs, or payment details. Remove sensitive information from screenshots before sharing them.</p>
+              <div class="aside-divider"></div>
+              <p>After submission, keep your reference code so the team can identify your report.</p>
             </section>
           </aside>
         </div>
@@ -574,39 +568,39 @@
     </section>
 
     <section class="section" id="faq">
-      <div class="wrap">
-        <div class="section-heading">
+      <div class="shell">
+        <div class="section-head">
           <div>
             <span class="section-kicker">Quick answers</span>
-            <h2>Sık sorulan sorular</h2>
-            <p class="section-intro">Zanity ana sitesindeki proje ve güncelleme bilgilerini burada da bulabilirsin.</p>
+            <h2>Frequently asked questions</h2>
+            <p class="section-copy">Project and update information from the Zanity main site.</p>
           </div>
-          <a class="button button-small" href="https://offical.zanity.net/" target="_blank" rel="noopener">Ana siteyi aç ↗</a>
+          <a class="button button-small" href="https://offical.zanity.net/" target="_blank" rel="noopener">Visit the main site ↗</a>
         </div>
         <div class="faq-list">
           <details class="faq">
-            <summary>Zanity'nin adı neden değişti? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>Eski adı Trollokoy'ddu; Zanity adı daha sade ve akılda kalıcı olduğu için seçildi.</p></div>
+            <summary>Why did the name change from Trollokoy to Zanity? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="answer"><p>The new name was chosen because it looks sleeker and feels simpler.</p></div>
           </details>
           <details class="faq">
-            <summary>Güncellemeler neden zaman alıyor? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>Yeni güncellemede nelerin yer alacağı netleştiriliyor. Başka bir oyun için proje hazırlanıyorsa öncelik ona verilebiliyor; bu nedenle sabit bir yayın tarihi yok.</p></div>
+            <summary>Why do updates take a while? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="answer"><p>Updates are planned before work begins, and a script for another game may take priority. There is no fixed release schedule.</p></div>
           </details>
           <details class="faq">
-            <summary>Criminal vs SWAT ve Trench War için yeni sürümler gelecek mi? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>Ana sitedeki bilgiye göre iki proje de v1.0 olarak çalışır durumda ve v1.1 bekleniyor. Sonrasında büyük olasılıkla az sayıda güncelleme gelecek; v1.2 son sürüm olabilir.</p></div>
+            <summary>Will Criminal vs SWAT and Trench War continue after v1.1? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="answer"><p>The main site lists both at v1.0, with v1.1 waiting. Further updates are not guaranteed; v1.2 may be the final update.</p></div>
           </details>
           <details class="faq">
-            <summary>Audio Hub hazır mı? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>Henüz değil; ses odaklı proje geliştirme aşamasında. Şimdilik kesin bir çıkış tarihi paylaşılmadı.</p></div>
+            <summary>Is Audio Hub available yet? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="answer"><p>Not yet. Audio Hub is in development, and no release date has been announced.</p></div>
           </details>
           <details class="faq">
-            <summary>Gelecekte başka projeler var mı? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>Şu an için kesinleşmiş bir yol haritası yok. Yeni fikirler ve projeler geliştirme durumuna göre duyurulacak.</p></div>
+            <summary>Are more projects planned? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="answer"><p>There is no fixed roadmap at the moment. New projects may be added as development progresses.</p></div>
           </details>
           <details class="faq">
-            <summary>Bir sorun bildirirken neleri eklemeliyim? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>Proje adını, sorunun hangi adımlarda oluştuğunu ve gördüğün hata mesajını ekle. Geri dönüş için Discord kullanıcı adını veya e-postanı isteğe bağlı olarak yazabilirsin. Şifre, token ya da webhook gönderme.</p></div>
+            <summary>What should I include in a support report? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="answer"><p>Include the project name, what you were doing, the exact error message, and steps to reproduce the issue. You can add contact information if you want a direct reply. Never include passwords, tokens, or webhook URLs.</p></div>
           </details>
         </div>
       </div>
@@ -614,17 +608,17 @@
   </main>
 
   <footer>
-    <div class="wrap footer-row">
-      <span>© <span id="year"></span> <strong>ZANITY</strong> · Rapor Merkezi</span>
+    <div class="shell footer-inner">
+      <span>© <span id="year"></span> <strong>ZANITY</strong> · Support Center</span>
       <div class="footer-links">
-        <a href="https://offical.zanity.net/" target="_blank" rel="noopener">Zanity ana sitesi</a>
+        <a href="https://offical.zanity.net/" target="_blank" rel="noopener">Main site</a>
         <a href="https://github.com/mert134/zanity-project" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // API adresi herkese açık olabilir. Discord webhook adresini buraya ASLA koyma.
+    // This API address is public. Never put the Discord webhook URL in this file.
     const API_ENDPOINT = "https://zanity-reports-api.onrender.com/api/report";
 
     const form = document.getElementById("report-form");
@@ -634,21 +628,22 @@
     const description = document.getElementById("description");
     const descriptionCount = document.getElementById("description-count");
     const scriptSelect = document.getElementById("script-name");
-    const menuButton = document.getElementById("menu-button");
-    const navLinks = document.getElementById("nav-links");
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-menu");
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    menuButton.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(isOpen));
-      menuButton.setAttribute("aria-label", isOpen ? "Menüyü kapat" : "Menüyü aç");
-      menuButton.textContent = isOpen ? "×" : "☰";
+    menuToggle.addEventListener("click", () => {
+      const open = navMenu.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+      menuToggle.textContent = open ? "×" : "☰";
     });
-    navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
-      navLinks.classList.remove("open");
-      menuButton.setAttribute("aria-expanded", "false");
-      menuButton.textContent = "☰";
+    navMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      navMenu.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation");
+      menuToggle.textContent = "☰";
     }));
 
     document.querySelectorAll(".select-project").forEach((button) => {
@@ -687,7 +682,7 @@
       };
 
       submitButton.disabled = true;
-      buttonLabel.textContent = "Gönderiliyor…";
+      buttonLabel.textContent = "Sending…";
       try {
         const response = await fetch(API_ENDPOINT, {
           method: "POST",
@@ -695,16 +690,16 @@
           body: JSON.stringify(payload)
         });
         const result = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(result.error || "Bildirim gönderilemedi. Biraz sonra tekrar dene.");
+        if (!response.ok) throw new Error(result.error || "The report could not be sent. Please try again shortly.");
 
         form.reset();
         descriptionCount.textContent = "0 / 2500";
-        showStatus(`Bildirimin destek kanalına ulaştı. Takip kodun: ${result.ticketId || "oluşturuldu"}. Bu kodu sakla.`, "success");
+        showStatus(`Your report was received. Reference code: ${result.ticketId || "created"}. Keep this code for follow-up.`, "success");
       } catch (error) {
-        showStatus(error.message || "Bağlantı kurulamadı. Lütfen tekrar dene.", "error");
+        showStatus(error.message || "Could not connect to the support service. Please try again.", "error");
       } finally {
         submitButton.disabled = false;
-        buttonLabel.textContent = "Bildirimi gönder";
+        buttonLabel.textContent = "Submit report";
       }
     });
   </script>
