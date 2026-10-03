@@ -53,7 +53,6 @@
     :root {
       color-scheme: dark;
       --bg: #08080a;
-      --surface: #111115;
       --surface-raised: #15151a;
       --line: rgba(255,255,255,.09);
       --line-strong: rgba(255,255,255,.17);
@@ -61,8 +60,6 @@
       --silver: #d4d4dd;
       --muted: #9b9ba4;
       --subtle: #707079;
-      --success: #7ce0b2;
-      --danger: #ff8895;
       --radius: 17px;
       --max: 1160px;
       --header-height: 77px;
@@ -145,8 +142,8 @@
     .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--line-strong); border-radius: 11px; color: var(--text); background: var(--surface-raised); cursor: pointer; }
 
     /* Hero */
-    .hero { padding: 92px 0 68px; }
-    .hero-grid { display: grid; grid-template-columns: minmax(0,1.14fr) minmax(290px,.86fr); align-items: center; gap: 50px; }
+    .hero { padding: 56px 0 36px; }
+    .hero-content { max-width: 800px; }
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -190,30 +187,7 @@
     .button:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.34); color: #fff; background: rgba(255,255,255,.09); box-shadow: 0 8px 24px rgba(0,0,0,.24); }
     .button-primary { border-color: #efeff4; color: #101014; background: linear-gradient(180deg,#fff,#cfcfd8); box-shadow: 0 7px 22px rgba(225,225,240,.13); }
     .button-primary:hover { border-color: white; color: #000; background: #fff; box-shadow: 0 9px 27px rgba(225,225,240,.2); }
-    .button-small { min-height: 35px; padding-inline: 11px; font-size: 10px; }
     .arrow { font-size: 15px; line-height: 1; }
-
-    .overview-card {
-      position: relative;
-      overflow: hidden;
-      padding: 23px;
-      border: 1px solid var(--line-strong);
-      border-radius: var(--radius);
-      background: linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.012) 60%),var(--surface);
-      box-shadow: 0 24px 70px rgba(0,0,0,.32), inset 0 1px rgba(255,255,255,.045);
-    }
-    .overview-card::after { content: ""; position: absolute; top: -115px; right: -62px; width: 220px; height: 220px; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; box-shadow: 0 0 0 23px rgba(255,255,255,.018),0 0 0 50px rgba(255,255,255,.012); pointer-events: none; }
-    .overview-head { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 15px; border-bottom: 1px solid var(--line); }
-    .overview-title { color: var(--silver); font-size: 10px; font-weight: 850; letter-spacing: .18em; text-transform: uppercase; }
-    .overview-note { color: var(--subtle); font-size: 9px; }
-    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; padding: 20px 0 18px; }
-    .stat { border-right: 1px solid var(--line); }
-    .stat:last-child { border: 0; }
-    .stat strong { display: block; color: #f1f1f5; font-size: 25px; line-height: 1.1; letter-spacing: -.04em; }
-    .stat span { display: block; margin-top: 5px; color: var(--subtle); font-size: 8px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-    .overview-steps { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
-    .overview-steps li { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 10px; }
-    .step-num { display: grid; place-items: center; width: 23px; height: 23px; flex: 0 0 23px; border: 1px solid var(--line-strong); border-radius: 8px; color: var(--silver); background: rgba(255,255,255,.045); font-size: 8px; font-weight: 850; }
 
     /* Shared sections */
     .section { padding: 66px 0; border-top: 1px solid rgba(255,255,255,.06); }
@@ -221,25 +195,6 @@
     .section-kicker { display: block; margin-bottom: 6px; color: var(--subtle); font-size: 8px; font-weight: 850; letter-spacing: .24em; text-transform: uppercase; }
     h2 { margin: 0; color: #f2f2f5; font-size: clamp(26px,4vw,37px); line-height: 1.1; letter-spacing: -.045em; }
     .section-copy { max-width: 570px; margin: 9px 0 0; color: var(--muted); font-size: 11px; }
-    .section-aside { max-width: 260px; margin: 0; color: var(--subtle); font-size: 9px; text-align: right; }
-
-    /* Project cards */
-    .project-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); align-items: stretch; gap: 16px; }
-    .project-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 15px; background: #101014; transition: transform .22s ease,border-color .22s ease,box-shadow .22s ease; }
-    .project-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.24); box-shadow: 0 18px 46px rgba(0,0,0,.36),0 0 24px rgba(255,255,255,.035); }
-    .project-cover { position: relative; flex: 0 0 auto; width: 100%; height: auto; overflow: hidden; aspect-ratio: 16/9; border-bottom: 1px solid var(--line); background: #17171c; }
-    .project-cover img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.82); transition: transform .4s ease,filter .3s ease; }
-    .project-card:hover .project-cover img { transform: scale(1.035); filter: saturate(1); }
-    .cover-label { position: absolute; top: 11px; left: 11px; min-height: 23px; display: inline-flex; align-items: center; padding: 0 9px; border: 1px solid rgba(255,255,255,.24); border-radius: 99px; color: white; background: rgba(8,8,10,.77); backdrop-filter: blur(8px); font-size: 8px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
-    .project-body { display: flex; flex: 1; flex-direction: column; padding: 16px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 9px; }
-    .tag { min-height: 21px; display: inline-flex; align-items: center; gap: 5px; padding: 2px 7px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); background: rgba(255,255,255,.025); font-size: 7px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
-    .tag-live { border-color: rgba(255,255,255,.24); color: #ececf0; }
-    .tag-dot { width: 5px; height: 5px; border-radius: 50%; background: #dddde4; box-shadow: 0 0 8px rgba(255,255,255,.6); }
-    .project-body h3 { margin: 0; color: #f5f5f7; font-size: 17px; letter-spacing: -.025em; }
-    .project-body p { flex: 0 0 auto; margin: 7px 0 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
-    .project-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
-    .project-actions a { text-decoration: none; }
 
     /* Report form */
     .report-layout { display: grid; grid-template-columns: minmax(0,1fr) 275px; align-items: start; gap: 16px; }
@@ -286,20 +241,6 @@
     .aside-card li::before { content: "—"; color: var(--silver); }
     .aside-divider { height: 1px; margin: 12px 0; background: var(--line); }
 
-    /* FAQ */
-    .faq-list { max-width: 850px; }
-    details.faq { overflow: hidden; border: 1px solid var(--line); border-radius: 11px; background: linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012)); }
-    details.faq + details.faq { margin-top: 8px; }
-    details.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 14px 16px; color: #e9e9ee; font-size: 10px; font-weight: 700; list-style: none; cursor: pointer; }
-    details.faq summary::-webkit-details-marker { display: none; }
-    details.faq summary:hover { background: rgba(255,255,255,.04); }
-    .plus { position: relative; width: 14px; height: 14px; flex: 0 0 14px; opacity: .7; transition: transform .2s ease; }
-    .plus::before,.plus::after { position: absolute; top: 50%; left: 50%; width: 11px; height: 1px; content: ""; background: var(--silver); transform: translate(-50%,-50%); }
-    .plus::after { transform: translate(-50%,-50%) rotate(90deg); }
-    details[open] .plus { transform: rotate(45deg); }
-    .answer { padding: 0 16px 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 9px; line-height: 1.75; }
-    .answer p { margin: 11px 0 0; }
-
     footer { padding: 21px 0 29px; border-top: 1px solid var(--line); }
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 14px; color: var(--subtle); font-size: 8px; }
     .footer-inner strong { color: var(--muted); font-weight: 750; }
@@ -309,9 +250,6 @@
     .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
 
     @media(max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
-      .overview-card { max-width: none; }
-      .project-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
       .report-layout { grid-template-columns: 1fr; }
       .report-aside { grid-template-columns: repeat(2,minmax(0,1fr)); }
     }
@@ -327,21 +265,12 @@
       .nav-menu { position: absolute; top: calc(var(--header-height) - 1px); left: 15px; right: 15px; display: none; flex-direction: column; align-items: stretch; gap: 6px; padding: 10px; border: 1px solid var(--line-strong); border-radius: 13px; background: rgba(15,15,19,.98); box-shadow: 0 18px 45px rgba(0,0,0,.45); backdrop-filter: blur(16px); }
       .nav-menu.open { display: flex; }
       .nav-link { justify-content: flex-start; min-height: 42px; padding-inline: 13px; }
-      .hero { padding: 62px 0 48px; }
+      .hero { padding: 42px 0 30px; }
       h1 { font-size: clamp(40px,12vw,61px); }
       .hero-copy { font-size: 12px; }
       .hero-actions .button { flex: 1; }
       .section { padding: 52px 0; }
       .section-head { align-items: flex-start; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-      .section-aside { text-align: left; }
-      .project-grid { grid-template-columns: 1fr; }
-      .project-card { display: grid; grid-template-columns: 37% minmax(0,1fr); min-height: 152px; }
-      .project-cover { width: auto; height: 100%; min-height: 152px; aspect-ratio: auto; border-right: 1px solid var(--line); border-bottom: 0; }
-      .project-body { padding: 12px; }
-      .project-body h3 { font-size: 14px; }
-      .project-body p { margin: 5px 0 9px; font-size: 9px; }
-      .project-actions { gap: 5px; }
-      .button-small { min-height: 30px; padding-inline: 8px; font-size: 8px; }
       .form-grid { grid-template-columns: 1fr; gap: 12px; }
       .field.full { grid-column: auto; }
       .form-bottom { align-items: stretch; flex-direction: column; }
@@ -365,9 +294,7 @@
       </a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
       <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
-        <a class="nav-link" href="#projects">Projects</a>
         <a class="nav-link nav-report" href="#report">Report an issue</a>
-        <a class="nav-link" href="#faq">FAQ</a>
         <a class="nav-link nav-external" href="https://offical.zanity.net/" target="_blank" rel="noopener">Main site ↗</a>
       </nav>
     </div>
@@ -375,94 +302,16 @@
 
   <main>
     <section class="hero">
-      <div class="shell hero-grid">
+      <div class="shell hero-content">
         <div>
           <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Zanity community support</div>
           <h1>Need help?<br><span>Let’s sort it out.</span></h1>
-          <p class="hero-copy">Found an issue, need help with a project, or have a suggestion? Choose the relevant Zanity project and send a clear report. <strong>Reports go straight to the support channel.</strong></p>
+          <p class="hero-copy">Found an issue or need help? Describe it in the form below and select the affected project. <strong>Your report goes straight to Zanity support.</strong></p>
           <div class="hero-actions">
             <a class="button button-primary" href="#report">Create a support report <span class="arrow" aria-hidden="true">→</span></a>
-            <a class="button" href="#projects">Explore projects</a>
           </div>
         </div>
-        <aside class="overview-card" aria-label="Zanity project overview">
-          <div class="overview-head"><span class="overview-title">Project overview</span><span class="overview-note">Independent projects</span></div>
-          <div class="stats">
-            <div class="stat"><strong>03</strong><span>Projects</span></div>
-            <div class="stat"><strong>02</strong><span>Working</span></div>
-            <div class="stat"><strong>01</strong><span>Coming soon</span></div>
-          </div>
-          <ol class="overview-steps">
-            <li><span class="step-num">01</span> Choose the affected project</li>
-            <li><span class="step-num">02</span> Explain what happened</li>
-            <li><span class="step-num">03</span> Keep your reference code</li>
-          </ol>
-        </aside>
-      </div>
-    </section>
 
-    <section class="section" id="projects">
-      <div class="shell">
-        <div class="section-head">
-          <div>
-            <span class="section-kicker">Zanity collection</span>
-            <h2>Choose a project</h2>
-            <p class="section-copy">These are the projects currently listed on the Zanity site. Select one to pre-fill the report form, or open its project page for more details.</p>
-          </div>
-          <p class="section-aside">New projects are added whenever development time allows.</p>
-        </div>
-
-        <div class="project-grid">
-          <article class="project-card">
-            <div class="project-cover">
-              <img src="https://raw.githubusercontent.com/mert134/zanity-project/main/criminal-vs-swat.png" alt="Criminal vs SWAT project artwork" loading="lazy" width="1280" height="720">
-              <span class="cover-label">Roblox</span>
-            </div>
-            <div class="project-body">
-              <div class="tags"><span class="tag tag-live"><span class="tag-dot"></span> Working</span><span class="tag">v1.0</span><span class="tag">v1.1 waiting</span></div>
-              <h3>Criminal vs SWAT</h3>
-              <p>Kill options, godmode, modified guns, teleports, and more — the full package.</p>
-              <div class="project-actions">
-                <button class="button button-small button-primary select-project" type="button" data-script="Criminal vs SWAT">Report for this project</button>
-                <a class="button button-small" href="https://offical.zanity.net/criminal-vs-swat" target="_blank" rel="noopener">Details ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-cover">
-              <img src="https://raw.githubusercontent.com/mert134/zanity-project/main/trench-war.png" alt="Trench War project artwork" loading="lazy" width="1280" height="720">
-              <span class="cover-label">Roblox</span>
-            </div>
-            <div class="project-body">
-              <div class="tags"><span class="tag tag-live"><span class="tag-dot"></span> Working</span><span class="tag">v1.0</span><span class="tag">v1.1 waiting</span></div>
-              <h3>Trench War</h3>
-              <p>Weapon mods, silent aim, no spread, and flag teleports. Clean and simple.</p>
-              <div class="project-actions">
-                <button class="button button-small button-primary select-project" type="button" data-script="Trench War">Report for this project</button>
-                <a class="button button-small" href="https://offical.zanity.net/trench-war" target="_blank" rel="noopener">Details ↗</a>
-              </div>
-            </div>
-          </article>
-
-    <div class="container">
-        <h1>SİTE HAZIR!!</h1>
-          <article class="project-card">
-            <div class="project-cover">
-              <img src="https://raw.githubusercontent.com/mert134/zanity-project/main/audio-hub.png" alt="Audio Hub project artwork" loading="lazy" width="1280" height="720">
-              <span class="cover-label">Coming soon</span>
-            </div>
-            <div class="project-body">
-              <div class="tags"><span class="tag">In development</span></div>
-              <h3>Audio Hub</h3>
-              <p>Something audio-related is on the way. No spoilers for now.</p>
-              <div class="project-actions">
-                <button class="button button-small button-primary select-project" type="button" data-script="Audio Hub">Report for this project</button>
-                <a class="button button-small" href="https://offical.zanity.net/audio-hub" target="_blank" rel="noopener">Details ↗</a>
-              </div>
-            </div>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -537,6 +386,8 @@
                 </div>
               </div>
 
+    <div class="container">
+        <h1>SİTE HAZIR!!</h1>
               <div class="visually-hidden" aria-hidden="true">
                 <label for="website">Leave this field empty</label>
                 <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
@@ -573,44 +424,7 @@
       </div>
     </section>
 
-    <section class="section" id="faq">
-      <div class="shell">
-        <div class="section-head">
-          <div>
-            <span class="section-kicker">Quick answers</span>
-            <h2>Frequently asked questions</h2>
-            <p class="section-copy">Project and update information from the Zanity main site.</p>
-          </div>
-          <a class="button button-small" href="https://offical.zanity.net/" target="_blank" rel="noopener">Visit the main site ↗</a>
-        </div>
-        <div class="faq-list">
-          <details class="faq">
-            <summary>Why did the name change from Trollokoy to Zanity? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>The new name was chosen because it looks sleeker and feels simpler.</p></div>
-          </details>
-          <details class="faq">
-            <summary>Why do updates take a while? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>Updates are planned before work begins, and a script for another game may take priority. There is no fixed release schedule.</p></div>
-          </details>
-          <details class="faq">
-            <summary>Will Criminal vs SWAT and Trench War continue after v1.1? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>The main site lists both at v1.0, with v1.1 waiting. Further updates are not guaranteed; v1.2 may be the final update.</p></div>
-          </details>
-          <details class="faq">
-            <summary>Is Audio Hub available yet? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>Not yet. Audio Hub is in development, and no release date has been announced.</p></div>
-          </details>
-          <details class="faq">
-            <summary>Are more projects planned? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>There is no fixed roadmap at the moment. New projects may be added as development progresses.</p></div>
-          </details>
-          <details class="faq">
-            <summary>What should I include in a support report? <span class="plus" aria-hidden="true"></span></summary>
-            <div class="answer"><p>Include the project name, what you were doing, the exact error message, and steps to reproduce the issue. You can add contact information if you want a direct reply. Never include passwords, tokens, or webhook URLs.</p></div>
-          </details>
-        </div>
-      </div>
-    </section>
+
   </main>
 
   <footer>
@@ -633,7 +447,6 @@
     const buttonLabel = document.getElementById("button-label");
     const description = document.getElementById("description");
     const descriptionCount = document.getElementById("description-count");
-    const scriptSelect = document.getElementById("script-name");
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("nav-menu");
 
@@ -651,14 +464,6 @@
       menuToggle.setAttribute("aria-label", "Open navigation");
       menuToggle.textContent = "☰";
     }));
-
-    document.querySelectorAll(".select-project").forEach((button) => {
-      button.addEventListener("click", () => {
-        scriptSelect.value = button.dataset.script;
-        document.getElementById("report").scrollIntoView({ behavior: "smooth" });
-        window.setTimeout(() => document.getElementById("category").focus({ preventScroll: true }), 450);
-      });
-    });
 
     description.addEventListener("input", () => {
       descriptionCount.textContent = `${description.value.length} / 2500`;
