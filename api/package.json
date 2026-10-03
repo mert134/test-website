@@ -1,0 +1,12 @@
+{
+  "name": "zanity-reports-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Server-side Discord forwarding endpoint for the Zanity reports form.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
